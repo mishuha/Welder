@@ -120,7 +120,7 @@ void startWelding() {
     impulses = 0;
     //waiting for feedback signal
     while (impulses == 0) {
-        Serial.println("stub");
+        Serial.println("stub"); // magic row, "MODE" and "impulses" variable are unable to update without Serial call
         // exit if no signal
         if (millis() - startime > initTimer + 2*impulseDuration) {
             digitalWrite(powerPin, LOW);
@@ -176,12 +176,12 @@ void alarmBuzzer() {
 }
     
 void impulseCounter() {
-  if (MODE == "welding") Serial.println("welding");
-  if (MODE == "setup") Serial.println("setup");
-  if (MODE == "main") Serial.println("main");
-  if (MODE == "debug") Serial.println("debug");
+//   if (MODE == "welding") Serial.println("welding");
+//   if (MODE == "setup") Serial.println("setup");
+//   if (MODE == "main") Serial.println("main");
+//   if (MODE == "debug") Serial.println("debug");
     if (MODE == "welding") {
-          Serial.println(impulses);
+          Serial.println(impulses); // magic row, "MODE" and "impulses" variable are unable to update without Serial call
       impulses++;
     }
 }
@@ -225,7 +225,7 @@ void setup() {
     pinMode(debugPin, INPUT_PULLUP);
     // pinMode(setupPin, INPUT);
     // pinMode(startPin, INPUT);
-     Serial.begin(500000);
+    Serial.begin(500000);
     if (digitalRead(debugPin) == LOW) {
       MODE = "debug";
     }
